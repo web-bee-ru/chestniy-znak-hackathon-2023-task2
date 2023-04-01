@@ -25,9 +25,9 @@ export function googleWordStats(search: string) {
 export type Row = { date: string; value: number };
 
 export async function googleWordStatsDaily(search: string): Promise<Row[]> {
-  const dates = dateFns.eachMonthOfInterval({
+  const dates = dateFns.eachDayOfInterval({
     start: new Date("2021-04-01"),
-    end: new Date(),
+    end: new Date("2021-05-01"),
   });
 
   const total: Row[][] = [];
@@ -36,8 +36,8 @@ export async function googleWordStatsDaily(search: string): Promise<Row[]> {
     const data = await googleTrends
       .interestOverTime({
         keyword: search,
-        startTime: dateFns.startOfMonth(date),
-        endTime: dateFns.endOfMonth(date),
+        startTime: dateFns.startOfDay(date),
+        endTime: dateFns.endOfDay(date),
         geo: "RU",
         timezone: -180,
       })
