@@ -1,0 +1,626 @@
+[
+  {
+    "totalCount": "9196667",
+    "dates": [
+      "2021-04-01",
+      "2021-04-30"
+    ],
+    "date": "2021-04-30",
+    "relCount": "8.410967851037599E-4",
+    "dateFrom": "01.04.2021",
+    "dateTo": "30.04.2021",
+    "totalCountInteger": "9 196 667",
+    "relCountFloat": "0,000 841 096 785"
+  },
+  {
+    "totalCount": "5847866",
+    "dates": [
+      "2021-05-01",
+      "2021-05-31"
+    ],
+    "date": "2021-05-31",
+    "relCount": "5.428335049371191E-4",
+    "dateFrom": "01.05.2021",
+    "dateTo": "31.05.2021",
+    "totalCountInteger": "5 847 866",
+    "relCountFloat": "0,000 542 833 505"
+  },
+  {
+    "totalCount": "4579827",
+    "dates": [
+      "2021-06-01",
+      "2021-06-30"
+    ],
+    "date": "2021-06-30",
+    "relCount": "4.403035623258922E-4",
+    "dateFrom": "01.06.2021",
+    "dateTo": "30.06.2021",
+    "totalCountInteger": "4 579 827",
+    "relCountFloat": "0,000 440 303 562"
+  },
+  {
+    "totalCount": "4396696",
+    "dates": [
+      "2021-07-01",
+      "2021-07-31"
+    ],
+    "date": "2021-07-31",
+    "relCount": "4.3114369467792585E-4",
+    "dateFrom": "01.07.2021",
+    "dateTo": "31.07.2021",
+    "totalCountInteger": "4 396 696",
+    "relCountFloat": "0,000 431 143 695"
+  },
+  {
+    "totalCount": "5103390",
+    "dates": [
+      "2021-08-01",
+      "2021-08-31"
+    ],
+    "date": "2021-08-31",
+    "relCount": "4.880936736737826E-4",
+    "dateFrom": "01.08.2021",
+    "dateTo": "31.08.2021",
+    "totalCountInteger": "5 103 390",
+    "relCountFloat": "0,000 488 093 674"
+  },
+  {
+    "totalCount": "7022855",
+    "dates": [
+      "2021-09-01",
+      "2021-09-30"
+    ],
+    "date": "2021-09-30",
+    "relCount": "6.372197620274017E-4",
+    "dateFrom": "01.09.2021",
+    "dateTo": "30.09.2021",
+    "totalCountInteger": "7 022 855",
+    "relCountFloat": "0,000 637 219 762"
+  },
+  {
+    "totalCount": "9331891",
+    "dates": [
+      "2021-10-01",
+      "2021-10-31"
+    ],
+    "date": "2021-10-31",
+    "relCount": "7.9694774058509E-4",
+    "dateFrom": "01.10.2021",
+    "dateTo": "31.10.2021",
+    "totalCountInteger": "9 331 891",
+    "relCountFloat": "0,000 796 947 741"
+  },
+  {
+    "totalCount": "8125961",
+    "dates": [
+      "2021-11-01",
+      "2021-11-30"
+    ],
+    "date": "2021-11-30",
+    "relCount": "6.791897887402327E-4",
+    "dateFrom": "01.11.2021",
+    "dateTo": "30.11.2021",
+    "totalCountInteger": "8 125 961",
+    "relCountFloat": "0,000 679 189 789"
+  },
+  {
+    "totalCount": "5092327",
+    "dates": [
+      "2021-12-01",
+      "2021-12-31"
+    ],
+    "date": "2021-12-31",
+    "relCount": "4.14233239331566E-4",
+    "dateFrom": "01.12.2021",
+    "dateTo": "31.12.2021",
+    "totalCountInteger": "5 092 327",
+    "relCountFloat": "0,000 414 233 239"
+  },
+  {
+    "totalCount": "4554527",
+    "dates": [
+      "2022-01-01",
+      "2022-01-31"
+    ],
+    "date": "2022-01-31",
+    "relCount": "3.726864718267129E-4",
+    "dateFrom": "01.01.2022",
+    "dateTo": "31.01.2022",
+    "totalCountInteger": "4 554 527",
+    "relCountFloat": "0,000 372 686 472"
+  },
+  {
+    "totalCount": "5122884",
+    "dates": [
+      "2022-02-01",
+      "2022-02-28"
+    ],
+    "date": "2022-02-28",
+    "relCount": "4.2326451471729203E-4",
+    "dateFrom": "01.02.2022",
+    "dateTo": "28.02.2022",
+    "totalCountInteger": "5 122 884",
+    "relCountFloat": "0,000 423 264 515"
+  },
+  {
+    "totalCount": "8731835",
+    "dates": [
+      "2022-03-01",
+      "2022-03-31"
+    ],
+    "date": "2022-03-31",
+    "relCount": "6.772571543847286E-4",
+    "dateFrom": "01.03.2022",
+    "dateTo": "31.03.2022",
+    "totalCountInteger": "8 731 835",
+    "relCountFloat": "0,000 677 257 154"
+  },
+  {
+    "totalCount": "9090262",
+    "dates": [
+      "2022-04-01",
+      "2022-04-30"
+    ],
+    "date": "2022-04-30",
+    "relCount": "7.467795568963419E-4",
+    "dateFrom": "01.04.2022",
+    "dateTo": "30.04.2022",
+    "totalCountInteger": "9 090 262",
+    "relCountFloat": "0,000 746 779 557"
+  },
+  {
+    "totalCount": "5985695",
+    "dates": [
+      "2022-05-01",
+      "2022-05-31"
+    ],
+    "date": "2022-05-31",
+    "relCount": "4.964753092617804E-4",
+    "dateFrom": "01.05.2022",
+    "dateTo": "31.05.2022",
+    "totalCountInteger": "5 985 695",
+    "relCountFloat": "0,000 496 475 309"
+  },
+  {
+    "totalCount": "4669941",
+    "dates": [
+      "2022-06-01",
+      "2022-06-30"
+    ],
+    "date": "2022-06-30",
+    "relCount": "4.3020114064883075E-4",
+    "dateFrom": "01.06.2022",
+    "dateTo": "30.06.2022",
+    "totalCountInteger": "4 669 941",
+    "relCountFloat": "0,000 430 201 141"
+  },
+  {
+    "totalCount": "4498114",
+    "dates": [
+      "2022-07-01",
+      "2022-07-31"
+    ],
+    "date": "2022-07-31",
+    "relCount": "4.2667152147488844E-4",
+    "dateFrom": "01.07.2022",
+    "dateTo": "31.07.2022",
+    "totalCountInteger": "4 498 114",
+    "relCountFloat": "0,000 426 671 521"
+  },
+  {
+    "totalCount": "4981064",
+    "dates": [
+      "2022-08-01",
+      "2022-08-31"
+    ],
+    "date": "2022-08-31",
+    "relCount": "4.560622320670873E-4",
+    "dateFrom": "01.08.2022",
+    "dateTo": "31.08.2022",
+    "totalCountInteger": "4 981 064",
+    "relCountFloat": "0,000 456 062 232"
+  },
+  {
+    "totalCount": "5549191",
+    "dates": [
+      "2022-09-01",
+      "2022-09-30"
+    ],
+    "date": "2022-09-30",
+    "relCount": "4.6829139923396665E-4",
+    "dateFrom": "01.09.2022",
+    "dateTo": "30.09.2022",
+    "totalCountInteger": "5 549 191",
+    "relCountFloat": "0,000 468 291 399"
+  },
+  {
+    "totalCount": "7535293",
+    "dates": [
+      "2022-10-01",
+      "2022-10-31"
+    ],
+    "date": "2022-10-31",
+    "relCount": "5.998438357148536E-4",
+    "dateFrom": "01.10.2022",
+    "dateTo": "31.10.2022",
+    "totalCountInteger": "7 535 293",
+    "relCountFloat": "0,000 599 843 836"
+  },
+  {
+    "totalCount": "7270523",
+    "dates": [
+      "2022-11-01",
+      "2022-11-30"
+    ],
+    "date": "2022-11-30",
+    "relCount": "5.670670271069781E-4",
+    "dateFrom": "01.11.2022",
+    "dateTo": "30.11.2022",
+    "totalCountInteger": "7 270 523",
+    "relCountFloat": "0,000 567 067 027"
+  },
+  {
+    "totalCount": "4124456",
+    "dates": [
+      "2022-12-01",
+      "2022-12-31"
+    ],
+    "date": "2022-12-31",
+    "relCount": "3.224529860141464E-4",
+    "dateFrom": "01.12.2022",
+    "dateTo": "31.12.2022",
+    "totalCountInteger": "4 124 456",
+    "relCountFloat": "0,000 322 452 986"
+  },
+  {
+    "totalCount": "3896537",
+    "dates": [
+      "2023-01-01",
+      "2023-01-31"
+    ],
+    "date": "2023-01-31",
+    "relCount": "3.108252863778713E-4",
+    "dateFrom": "01.01.2023",
+    "dateTo": "31.01.2023",
+    "totalCountInteger": "3 896 537",
+    "relCountFloat": "0,000 310 825 286"
+  },
+  {
+    "totalCount": "4148448",
+    "dates": [
+      "2023-02-01",
+      "2023-02-28"
+    ],
+    "date": "2023-02-28",
+    "relCount": "3.5707711401942473E-4",
+    "dateFrom": "01.02.2023",
+    "dateTo": "28.02.2023",
+    "totalCountInteger": "4 148 448",
+    "relCountFloat": "0,000 357 077 114"
+  },
+  {
+    "totalCount": "0",
+    "dates": [
+      "2023-03-01",
+      "2023-03-31"
+    ],
+    "date": "2023-03-31",
+    "relCount": "0.0",
+    "dateFrom": "01.03.2023",
+    "dateTo": "31.03.2023",
+    "totalCountInteger": "0",
+    "relCountFloat": "0,000 000 000 000"
+  },
+  {
+    "totalCount": "9196667",
+    "dates": [
+      "2021-04-01",
+      "2021-04-30"
+    ],
+    "date": "2021-04-30",
+    "relCount": "8.410967851037599E-4",
+    "dateFrom": "01.04.2021",
+    "dateTo": "30.04.2021",
+    "totalCountInteger": "9 196 667",
+    "relCountFloat": "0,000 841 096 785"
+  },
+  {
+    "totalCount": "5847866",
+    "dates": [
+      "2021-05-01",
+      "2021-05-31"
+    ],
+    "date": "2021-05-31",
+    "relCount": "5.428335049371191E-4",
+    "dateFrom": "01.05.2021",
+    "dateTo": "31.05.2021",
+    "totalCountInteger": "5 847 866",
+    "relCountFloat": "0,000 542 833 505"
+  },
+  {
+    "totalCount": "4579827",
+    "dates": [
+      "2021-06-01",
+      "2021-06-30"
+    ],
+    "date": "2021-06-30",
+    "relCount": "4.403035623258922E-4",
+    "dateFrom": "01.06.2021",
+    "dateTo": "30.06.2021",
+    "totalCountInteger": "4 579 827",
+    "relCountFloat": "0,000 440 303 562"
+  },
+  {
+    "totalCount": "4396696",
+    "dates": [
+      "2021-07-01",
+      "2021-07-31"
+    ],
+    "date": "2021-07-31",
+    "relCount": "4.3114369467792585E-4",
+    "dateFrom": "01.07.2021",
+    "dateTo": "31.07.2021",
+    "totalCountInteger": "4 396 696",
+    "relCountFloat": "0,000 431 143 695"
+  },
+  {
+    "totalCount": "5103390",
+    "dates": [
+      "2021-08-01",
+      "2021-08-31"
+    ],
+    "date": "2021-08-31",
+    "relCount": "4.880936736737826E-4",
+    "dateFrom": "01.08.2021",
+    "dateTo": "31.08.2021",
+    "totalCountInteger": "5 103 390",
+    "relCountFloat": "0,000 488 093 674"
+  },
+  {
+    "totalCount": "7022855",
+    "dates": [
+      "2021-09-01",
+      "2021-09-30"
+    ],
+    "date": "2021-09-30",
+    "relCount": "6.372197620274017E-4",
+    "dateFrom": "01.09.2021",
+    "dateTo": "30.09.2021",
+    "totalCountInteger": "7 022 855",
+    "relCountFloat": "0,000 637 219 762"
+  },
+  {
+    "totalCount": "9331891",
+    "dates": [
+      "2021-10-01",
+      "2021-10-31"
+    ],
+    "date": "2021-10-31",
+    "relCount": "7.9694774058509E-4",
+    "dateFrom": "01.10.2021",
+    "dateTo": "31.10.2021",
+    "totalCountInteger": "9 331 891",
+    "relCountFloat": "0,000 796 947 741"
+  },
+  {
+    "totalCount": "8125961",
+    "dates": [
+      "2021-11-01",
+      "2021-11-30"
+    ],
+    "date": "2021-11-30",
+    "relCount": "6.791897887402327E-4",
+    "dateFrom": "01.11.2021",
+    "dateTo": "30.11.2021",
+    "totalCountInteger": "8 125 961",
+    "relCountFloat": "0,000 679 189 789"
+  },
+  {
+    "totalCount": "5092327",
+    "dates": [
+      "2021-12-01",
+      "2021-12-31"
+    ],
+    "date": "2021-12-31",
+    "relCount": "4.14233239331566E-4",
+    "dateFrom": "01.12.2021",
+    "dateTo": "31.12.2021",
+    "totalCountInteger": "5 092 327",
+    "relCountFloat": "0,000 414 233 239"
+  },
+  {
+    "totalCount": "4554527",
+    "dates": [
+      "2022-01-01",
+      "2022-01-31"
+    ],
+    "date": "2022-01-31",
+    "relCount": "3.726864718267129E-4",
+    "dateFrom": "01.01.2022",
+    "dateTo": "31.01.2022",
+    "totalCountInteger": "4 554 527",
+    "relCountFloat": "0,000 372 686 472"
+  },
+  {
+    "totalCount": "5122884",
+    "dates": [
+      "2022-02-01",
+      "2022-02-28"
+    ],
+    "date": "2022-02-28",
+    "relCount": "4.2326451471729203E-4",
+    "dateFrom": "01.02.2022",
+    "dateTo": "28.02.2022",
+    "totalCountInteger": "5 122 884",
+    "relCountFloat": "0,000 423 264 515"
+  },
+  {
+    "totalCount": "8731835",
+    "dates": [
+      "2022-03-01",
+      "2022-03-31"
+    ],
+    "date": "2022-03-31",
+    "relCount": "6.772571543847286E-4",
+    "dateFrom": "01.03.2022",
+    "dateTo": "31.03.2022",
+    "totalCountInteger": "8 731 835",
+    "relCountFloat": "0,000 677 257 154"
+  },
+  {
+    "totalCount": "9090262",
+    "dates": [
+      "2022-04-01",
+      "2022-04-30"
+    ],
+    "date": "2022-04-30",
+    "relCount": "7.467795568963419E-4",
+    "dateFrom": "01.04.2022",
+    "dateTo": "30.04.2022",
+    "totalCountInteger": "9 090 262",
+    "relCountFloat": "0,000 746 779 557"
+  },
+  {
+    "totalCount": "5985695",
+    "dates": [
+      "2022-05-01",
+      "2022-05-31"
+    ],
+    "date": "2022-05-31",
+    "relCount": "4.964753092617804E-4",
+    "dateFrom": "01.05.2022",
+    "dateTo": "31.05.2022",
+    "totalCountInteger": "5 985 695",
+    "relCountFloat": "0,000 496 475 309"
+  },
+  {
+    "totalCount": "4669941",
+    "dates": [
+      "2022-06-01",
+      "2022-06-30"
+    ],
+    "date": "2022-06-30",
+    "relCount": "4.3020114064883075E-4",
+    "dateFrom": "01.06.2022",
+    "dateTo": "30.06.2022",
+    "totalCountInteger": "4 669 941",
+    "relCountFloat": "0,000 430 201 141"
+  },
+  {
+    "totalCount": "4498114",
+    "dates": [
+      "2022-07-01",
+      "2022-07-31"
+    ],
+    "date": "2022-07-31",
+    "relCount": "4.2667152147488844E-4",
+    "dateFrom": "01.07.2022",
+    "dateTo": "31.07.2022",
+    "totalCountInteger": "4 498 114",
+    "relCountFloat": "0,000 426 671 521"
+  },
+  {
+    "totalCount": "4981064",
+    "dates": [
+      "2022-08-01",
+      "2022-08-31"
+    ],
+    "date": "2022-08-31",
+    "relCount": "4.560622320670873E-4",
+    "dateFrom": "01.08.2022",
+    "dateTo": "31.08.2022",
+    "totalCountInteger": "4 981 064",
+    "relCountFloat": "0,000 456 062 232"
+  },
+  {
+    "totalCount": "5549191",
+    "dates": [
+      "2022-09-01",
+      "2022-09-30"
+    ],
+    "date": "2022-09-30",
+    "relCount": "4.6829139923396665E-4",
+    "dateFrom": "01.09.2022",
+    "dateTo": "30.09.2022",
+    "totalCountInteger": "5 549 191",
+    "relCountFloat": "0,000 468 291 399"
+  },
+  {
+    "totalCount": "7535293",
+    "dates": [
+      "2022-10-01",
+      "2022-10-31"
+    ],
+    "date": "2022-10-31",
+    "relCount": "5.998438357148536E-4",
+    "dateFrom": "01.10.2022",
+    "dateTo": "31.10.2022",
+    "totalCountInteger": "7 535 293",
+    "relCountFloat": "0,000 599 843 836"
+  },
+  {
+    "totalCount": "7270523",
+    "dates": [
+      "2022-11-01",
+      "2022-11-30"
+    ],
+    "date": "2022-11-30",
+    "relCount": "5.670670271069781E-4",
+    "dateFrom": "01.11.2022",
+    "dateTo": "30.11.2022",
+    "totalCountInteger": "7 270 523",
+    "relCountFloat": "0,000 567 067 027"
+  },
+  {
+    "totalCount": "4124456",
+    "dates": [
+      "2022-12-01",
+      "2022-12-31"
+    ],
+    "date": "2022-12-31",
+    "relCount": "3.224529860141464E-4",
+    "dateFrom": "01.12.2022",
+    "dateTo": "31.12.2022",
+    "totalCountInteger": "4 124 456",
+    "relCountFloat": "0,000 322 452 986"
+  },
+  {
+    "totalCount": "3896537",
+    "dates": [
+      "2023-01-01",
+      "2023-01-31"
+    ],
+    "date": "2023-01-31",
+    "relCount": "3.108252863778713E-4",
+    "dateFrom": "01.01.2023",
+    "dateTo": "31.01.2023",
+    "totalCountInteger": "3 896 537",
+    "relCountFloat": "0,000 310 825 286"
+  },
+  {
+    "totalCount": "4148448",
+    "dates": [
+      "2023-02-01",
+      "2023-02-28"
+    ],
+    "date": "2023-02-28",
+    "relCount": "3.5707711401942473E-4",
+    "dateFrom": "01.02.2023",
+    "dateTo": "28.02.2023",
+    "totalCountInteger": "4 148 448",
+    "relCountFloat": "0,000 357 077 114"
+  },
+  {
+    "totalCount": "0",
+    "dates": [
+      "2023-03-01",
+      "2023-03-31"
+    ],
+    "date": "2023-03-31",
+    "relCount": "0.0",
+    "dateFrom": "01.03.2023",
+    "dateTo": "31.03.2023",
+    "totalCountInteger": "0",
+    "relCountFloat": "0,000 000 000 000"
+  }
+]
