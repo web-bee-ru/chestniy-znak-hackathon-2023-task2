@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b989a109-1cd0-4ffc-8a04-9e020b452d30" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/dictionary/dictionary.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/dictionary.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/wordstats.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/wordstats.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +29,7 @@
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "D:\\Bitbucket\\chestniy-znak-hackathon-2023-task2\\server\\node_modules\\prettier",
     "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2021.2.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "D:\\Bitbucket\\chestniy-znak-hackathon-2023-task2\\server\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -47,7 +46,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1680344041625</updated>
-      <workItem from="1680344045134" duration="8473000" />
+      <workItem from="1680344045134" duration="9266000" />
     </task>
     <servers />
   </component>
