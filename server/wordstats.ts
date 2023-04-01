@@ -13,7 +13,7 @@ export function googleWordStats(search: string) {
   return googleTrends
     .interestOverTime({
       keyword: search,
-      startTime: new Date("2021-10-01"),
+      startTime: new Date("2021-04-01"),
       endTime: new Date(),
       geo: "RU",
       timezone: -180,
@@ -23,7 +23,7 @@ export function googleWordStats(search: string) {
 
 export async function googleWordStatsDaily(search: string) {
   const dates = dateFns.eachMonthOfInterval({
-    start: new Date("2021-10-01"),
+    start: new Date("2021-04-01"),
     end: new Date(),
   });
 
