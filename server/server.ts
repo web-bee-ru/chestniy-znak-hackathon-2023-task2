@@ -38,7 +38,10 @@ router.get("/wordstats/google", async (ctx, next) => {
     path.join(__dirname, `../dictionary/google-trends/${name}.csv`)
   );
 
-  ctx.body = df.values;
+  ctx.body = dfd.toJSON(df).map((x) => ({
+    date: x.date,
+    value: x.value,
+  }));
 });
 
 router.get("/wordstats/yandex", async (ctx, next) => {
@@ -48,7 +51,10 @@ router.get("/wordstats/yandex", async (ctx, next) => {
     path.join(__dirname, `../dictionary/yandex-wordstats/${name}.json`)
   );
 
-  ctx.body = df.values;
+  ctx.body = dfd.toJSON(df).map((x) => ({
+    date: x.date,
+    value: x.totalCount,
+  }));
 });
 
 router.get("/corr", async (ctx, next) => {
