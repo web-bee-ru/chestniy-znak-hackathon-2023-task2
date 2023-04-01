@@ -1,5 +1,6 @@
 import * as dfd from "danfojs-node";
 import path from "node:path";
+import _ from "lodash";
 
 export const getYandexStats = async (
   name: string
@@ -8,13 +9,23 @@ export const getYandexStats = async (
     path.join(__dirname, `../../dictionary/yandex-wordstats/${name}.json`)
   )) as dfd.DataFrame;
 
-  return dfd
+  const all = dfd
     .toJSON(df)
     .map((x) => ({
       date: x.date,
       value: x.totalCount,
     }))
     .filter((x) => x.value > 0);
+
+  const result = _.map(
+    _.groupBy(all, (x) => x.date),
+    (x, date) => ({
+      date,
+      value: _.maxBy(x, (y) => y.value).value,
+    })
+  );
+
+  return result;
 };
 
 export const getGoogleStats = async (
@@ -24,10 +35,20 @@ export const getGoogleStats = async (
     path.join(__dirname, `../../dictionary/google-trends/${name}.csv`)
   );
 
-  return dfd.toJSON(df).map((x) => ({
+  const all = dfd.toJSON(df).map((x) => ({
     date: x.date,
     value: x.value,
   }));
+
+  const result = _.map(
+    _.groupBy(all, (x) => x.date),
+    (x, date) => ({
+      date,
+      value: _.maxBy(x, (y) => y.value).value,
+    })
+  );
+
+  return result;
 };
 
 export const getEnterHistory = async (): Promise<
