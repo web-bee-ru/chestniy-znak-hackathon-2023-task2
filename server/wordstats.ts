@@ -1,10 +1,7 @@
-import axios from "axios";
 import googleTrends from "google-trends-api";
 import * as dateFns from "date-fns";
 
-const [_, __, ...searchArgs] = process.argv;
-
-function googleWordStats(search: string) {
+export function googleWordStats(search: string) {
   return googleTrends
     .interestOverTime({
       keyword: search,
@@ -19,12 +16,5 @@ function googleWordStats(search: string) {
         date: dateFns.format(new Date(Number(x.time) * 1000), "yyyy-MM-dd"),
         value: x.value[0],
       }));
-    })
-    .then((data) => JSON.stringify(data));
+    });
 }
-
-const search = searchArgs.join(" ");
-
-googleWordStats(search)
-  .then((res) => console.log(res))
-  .then(() => process.exit());
