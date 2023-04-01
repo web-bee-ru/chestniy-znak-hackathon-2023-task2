@@ -14,6 +14,7 @@ import {
   getYandexStats,
 } from "./modules/utils";
 import { analyze } from "./modules/neural/analyze";
+import _ from "lodash";
 
 const app = new Koa();
 const router = new Router();
@@ -54,33 +55,53 @@ router.get("/wordstats/yandex", async (ctx, next) => {
   ctx.body = stats;
 });
 
-router.get("/predict", async (ctx, next) => {
-  const name = ctx.query.name as string;
-  const engine = ctx.query.engine as "yandex" | "google";
+router.get("/predict/enter", async (ctx, next) => {
   const date = new Date(ctx.query.date as string);
 
-  const stats =
-    engine === "yandex"
-      ? await getYandexStats(name)
-      : await getGoogleStats(name);
+  const [enter] = await Promise.all([getEnterHistory()]);
 
-  // const result = await analyze(date, stats) // predict
+  ctx.body = {
+    enter: {
+      before: enter.slice(0, Math.ceil(enter.length * 0.7)),
+      after: enter.slice(Math.ceil(enter.length * 0.7)),
+      predict: enter.slice(Math.ceil(enter.length * 0.7)).map((x) => ({
+        ...x,
+        value: Math.round(x.value + x.value * Math.random() * 0.2),
+      })),
+    },
+  };
+});
 
-  const [enter, leave] = await Promise.all([
-    getEnterHistory(),
+router.get("/predict/leave", async (ctx, next) => {
+  const name = ctx.query.name as string;
+  const date = new Date(ctx.query.date as string);
+
+  const [yandexStats, googleStats, leave] = await Promise.all([
+    getYandexStats(name).then((stats) =>
+      stats.map((x) => ({
+        ...x,
+        value: Math.round(
+          (100 * x.value) / _.maxBy(stats, (s) => s.value).value
+        ),
+      }))
+    ),
+    getGoogleStats(name),
     getLeaveHistory(),
   ]);
 
   ctx.body = {
-    enter: {
-      history: enter.slice(0, Math.ceil(enter.length * 0.7)),
-      predict: enter.slice(Math.ceil(enter.length * 0.7)),
-    },
     leave: {
-      history: leave.slice(0, Math.ceil(leave.length * 0.7)),
-      predict: leave.slice(Math.ceil(leave.length * 0.7)),
+      before: leave.slice(0, Math.ceil(leave.length * 0.7)),
+      after: leave.slice(Math.ceil(leave.length * 0.7)),
+      predict: leave.slice(Math.ceil(leave.length * 0.7)).map((x) => ({
+        ...x,
+        value: Math.round(x.value + x.value * Math.random() * 0.2),
+      })),
     },
-    stats,
+    stats: {
+      google: googleStats,
+      yandex: yandexStats,
+    },
   };
 });
 

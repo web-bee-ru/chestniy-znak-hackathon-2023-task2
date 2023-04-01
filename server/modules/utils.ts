@@ -8,10 +8,13 @@ export const getYandexStats = async (
     path.join(__dirname, `../../dictionary/yandex-wordstats/${name}.json`)
   )) as dfd.DataFrame;
 
-  return dfd.toJSON(df).map((x) => ({
-    date: x.date,
-    value: x.totalCount,
-  }));
+  return dfd
+    .toJSON(df)
+    .map((x) => ({
+      date: x.date,
+      value: x.totalCount,
+    }))
+    .filter((x) => x.value !== 0);
 };
 
 export const getGoogleStats = async (
