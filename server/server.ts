@@ -93,6 +93,6 @@ app
   .use(koaBody())
   .use(router.routes())
   .use(router.allowedMethods())
-  .listen(3000, () => {
+  .listen(process.env.PORT || 3000, () => {
     console.log("server started");
   });
