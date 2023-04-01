@@ -2,7 +2,7 @@ import Koa from "koa";
 import cors from "@koa/cors";
 import { koaBody } from "koa-body";
 import Router from "@koa/router";
-import { googleWordStatsDaily } from "./wordstats";
+import { googleWordStatsDaily } from "./modules/wordstats";
 import mem from "mem";
 
 const app = new Koa();
@@ -18,6 +18,10 @@ const googleWordStatsDailyMemoized = mem((search: string) =>
 );
 
 router.get("/wordstats", async (ctx, next) => {
+  ctx.body = await googleWordStatsDailyMemoized(ctx.query.search as string);
+});
+
+router.get("/corr", async (ctx, next) => {
   ctx.body = await googleWordStatsDailyMemoized(ctx.query.search as string);
 });
 

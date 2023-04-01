@@ -3,8 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="b989a109-1cd0-4ffc-8a04-9e020b452d30" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/marking/leave-aggregate.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/marking/leave-aggregate.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dictionary/dictionary.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/dictionary.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary/google-trends/лекарства.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/google-trends/лекарства.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary/google-trends/минеральная вода.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/google-trends/минеральная вода.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary/google-trends/молоко.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/google-trends/молоко.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary/google-trends/обувь.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/google-trends/обувь.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary/google-trends/одежда.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/google-trends/одежда.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary/google-trends/парфюм.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/google-trends/парфюм.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary/google-trends/пиво.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/google-trends/пиво.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary/google-trends/сигареты.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/google-trends/сигареты.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary/google-trends/фотоаппарат.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/google-trends/фотоаппарат.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary/google-trends/шины.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/google-trends/шины.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary/google-trends/шуба.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/google-trends/шуба.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dictionary/server.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/server.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/bin/google-daily.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/bin/google-daily.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/bin/google.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/bin/google.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/wordstats.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/modules/wordstats.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +45,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Bitbucket/chestniy-znak-hackathon-2023-task2/server/bin",
+    "last_opened_file_path": "D:/Bitbucket/chestniy-znak-hackathon-2023-task2/data/marking",
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "D:\\Bitbucket\\chestniy-znak-hackathon-2023-task2\\server\\node_modules\\prettier",
     "settings.editor.selected.configurable": "settings.javascript.prettier",
@@ -37,7 +55,12 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Bitbucket\chestniy-znak-hackathon-2023-task2\data\marking" />
       <recent name="D:\Bitbucket\chestniy-znak-hackathon-2023-task2\server\bin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Bitbucket\chestniy-znak-hackathon-2023-task2\server\modules\neural" />
+      <recent name="D:\Bitbucket\chestniy-znak-hackathon-2023-task2\server\modules" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -48,7 +71,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1680344041625</updated>
-      <workItem from="1680344045134" duration="10263000" />
+      <workItem from="1680344045134" duration="18250000" />
     </task>
     <servers />
   </component>

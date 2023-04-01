@@ -1,4 +1,4 @@
-import { googleWordStats } from "../wordstats";
+import { googleWordStats } from "../modules/wordstats";
 
 const [_, __, ...searchArgs] = process.argv;
 
