@@ -7,6 +7,13 @@ import mem from "mem";
 import fs from "node:fs/promises";
 import path from "node:path";
 import * as dfd from "danfojs-node";
+import {
+  getEnterHistory,
+  getGoogleStats,
+  getLeaveHistory,
+  getYandexStats,
+} from "./modules/utils";
+import { analyze } from "./modules/neural/analyze";
 
 const app = new Koa();
 const router = new Router();
@@ -34,27 +41,47 @@ router.get("/wordstats/names", async (ctx, next) => {
 router.get("/wordstats/google", async (ctx, next) => {
   const name = ctx.query.name as string;
 
-  const df = await dfd.readCSV(
-    path.join(__dirname, `../dictionary/google-trends/${name}.csv`)
-  );
+  const stats = await getGoogleStats(name);
 
-  ctx.body = dfd.toJSON(df).map((x) => ({
-    date: x.date,
-    value: x.value,
-  }));
+  ctx.body = stats;
 });
 
 router.get("/wordstats/yandex", async (ctx, next) => {
   const name = ctx.query.name as string;
 
-  const df = await dfd.readJSON(
-    path.join(__dirname, `../dictionary/yandex-wordstats/${name}.json`)
-  );
+  const stats = await getYandexStats(name);
 
-  ctx.body = dfd.toJSON(df).map((x) => ({
-    date: x.date,
-    value: x.totalCount,
-  }));
+  ctx.body = stats;
+});
+
+router.get("/predict", async (ctx, next) => {
+  const name = ctx.query.name as string;
+  const engine = ctx.query.engine as "yandex" | "google";
+  const date = new Date(ctx.query.date as string);
+
+  const stats =
+    engine === "yandex"
+      ? await getYandexStats(name)
+      : await getGoogleStats(name);
+
+  // const result = await analyze(date, stats) // predict
+
+  const [enter, leave] = await Promise.all([
+    getEnterHistory(),
+    getLeaveHistory(),
+  ]);
+
+  ctx.body = {
+    enter: {
+      history: enter.slice(0, Math.ceil(enter.length * 0.7)),
+      predict: enter.slice(Math.ceil(enter.length * 0.7)),
+    },
+    leave: {
+      history: leave.slice(0, Math.ceil(leave.length * 0.7)),
+      predict: leave.slice(Math.ceil(leave.length * 0.7)),
+    },
+    stats,
+  };
 });
 
 router.get("/corr", async (ctx, next) => {
