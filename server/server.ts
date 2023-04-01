@@ -33,10 +33,19 @@ router.get("/wordstats", async (ctx, next) => {
 });
 
 router.get("/wordstats/names", async (ctx, next) => {
-  const names = await fs.readdir(
-    path.join(__dirname, "../dictionary/yandex-wordstats")
-  );
-  ctx.body = names.map((x) => x.split(".")[0]);
+  ctx.body = [
+    { value: "парфюм", title: "Духи и туалетная вода" },
+    { value: "лекарства", title: "Лекарства" },
+    { value: "минеральная вода", title: "Упакованная вода" },
+    { value: "молоко", title: "Молочная продукция" },
+    { value: "обувь", title: "Обувь" },
+    { value: "одежда", title: "Лёгкая промышленность" },
+    { value: "пиво", title: "Пиво и слабоалкогольные напитки" },
+    { value: "сигареты", title: "Табак" },
+    { value: "фотоаппарат", title: "Фотоаппараты и лампы-вспышки" },
+    { value: "шины", title: "Шины" },
+    { value: "шуба", title: "Шубы" },
+  ];
 });
 
 router.get("/wordstats/google", async (ctx, next) => {
