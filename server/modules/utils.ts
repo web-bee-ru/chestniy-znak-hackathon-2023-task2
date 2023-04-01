@@ -14,7 +14,7 @@ export const getYandexStats = async (
       date: x.date,
       value: x.totalCount,
     }))
-    .filter((x) => x.value !== 0);
+    .filter((x) => x.value > 0);
 };
 
 export const getGoogleStats = async (
