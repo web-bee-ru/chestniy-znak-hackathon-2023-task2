@@ -86,16 +86,16 @@ router.get("/predict/leave", async (ctx, next) => {
   const date = new Date(ctx.query.date as string);
 
   const [yandexStats, googleStats, leave] = await Promise.all([
-    getYandexStats(name).then((stats) =>
-      stats
+    getYandexStats(name).then((stats) => {
+      const min = _.minBy(stats, (s) => s.value).value;
+      const max = _.maxBy(stats, (s) => s.value).value;
+      return stats
         .map((x) => ({
           ...x,
-          value: Math.round(
-            (100 * x.value) / _.maxBy(stats, (s) => s.value).value
-          ),
+          value: Math.round((100 * (x.value - min)) / (max - min)),
         }))
-        .filter((x) => x.date >= "2021-11-01")
-    ),
+        .filter((x) => x.date >= "2021-11-01");
+    }),
     getGoogleStats(name).then((stats) =>
       stats.filter((x) => x.date >= "2021-11-01")
     ),
