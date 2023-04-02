@@ -174,7 +174,7 @@ const Index = () => {
       labels,
       datasets: [
         {
-          label: 'beforeStats',
+          label: 'Данные до',
           data: beforeStats,
           fill: 'smooth',
           cubicInterpolationMode: 'monotone',
@@ -188,7 +188,7 @@ const Index = () => {
           },
         },
         {
-          label: 'afterStats',
+          label: 'Данные после',
           data: afterStats,
           fill: 'smooth',
           cubicInterpolationMode: 'monotone',
@@ -202,7 +202,7 @@ const Index = () => {
           },
         },
         {
-          label: 'predictStats',
+          label: 'Предсказание',
           data: predictStats,
           fill: 'smooth',
           cubicInterpolationMode: 'monotone',
@@ -234,7 +234,7 @@ const Index = () => {
       labels,
       datasets: [
         {
-          label: 'beforeStats',
+          label: 'Данные до',
           data: beforeStats,
           fill: 'smooth',
           cubicInterpolationMode: 'monotone',
@@ -248,7 +248,7 @@ const Index = () => {
           },
         },
         {
-          label: 'afterStats',
+          label: 'Данные после',
           data: afterStats,
           fill: 'smooth',
           cubicInterpolationMode: 'monotone',
@@ -262,7 +262,7 @@ const Index = () => {
           },
         },
         {
-          label: 'predictStats',
+          label: 'Предсказание',
           data: predictStats,
           fill: 'smooth',
           cubicInterpolationMode: 'monotone',
@@ -301,7 +301,7 @@ const Index = () => {
       labels,
       datasets: [
         {
-          label: 'beforeStats',
+          label: 'Данные до',
           data: beforeStats,
           fill: 'smooth',
           cubicInterpolationMode: 'monotone',
@@ -315,7 +315,7 @@ const Index = () => {
           },
         },
         {
-          label: 'afterStats',
+          label: 'Данные после',
           data: afterStats,
           fill: 'smooth',
           cubicInterpolationMode: 'monotone',
@@ -329,7 +329,7 @@ const Index = () => {
           },
         },
         {
-          label: 'predictStats',
+          label: 'Предсказание',
           data: predictStats,
           fill: 'smooth',
           cubicInterpolationMode: 'monotone',
@@ -343,7 +343,7 @@ const Index = () => {
           },
         },
         {
-          label: 'googleHIstory',
+          label: 'Статистика поиска',
           data: googleHIstory,
           fill: 'smooth',
           cubicInterpolationMode: 'monotone',
@@ -372,7 +372,7 @@ const Index = () => {
       labels,
       datasets: [
         {
-          label: 'beforeStats',
+          label: 'Данные до',
           data: beforeStats,
           fill: 'smooth',
           cubicInterpolationMode: 'monotone',
@@ -386,7 +386,7 @@ const Index = () => {
           },
         },
         {
-          label: 'afterStats',
+          label: 'Данные после',
           data: afterStats,
           fill: 'smooth',
           cubicInterpolationMode: 'monotone',
@@ -400,7 +400,7 @@ const Index = () => {
           },
         },
         {
-          label: 'predictStats',
+          label: 'Предсказание',
           data: predictStats,
           fill: 'smooth',
           cubicInterpolationMode: 'monotone',
