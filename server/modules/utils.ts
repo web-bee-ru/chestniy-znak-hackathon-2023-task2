@@ -77,7 +77,7 @@ export const getEnterHistory = async (): Promise<
   { date: string; value: number }[]
 > => {
   const df = await dfd.readCSV(
-    path.join(__dirname, `../../data/marking/enter-aggregate-smooth.csv`)
+    path.join(__dirname, `../../data/marking/enter-full-aggregate-smooth.csv`)
   );
 
   return dfd.toJSON(df).map((x) => ({
@@ -90,7 +90,7 @@ export const getLeaveHistory = async (): Promise<
   { date: string; value: number }[]
 > => {
   const df = await dfd.readCSV(
-    path.join(__dirname, `../../data/marking/leave-aggregate-smooth.csv`)
+    path.join(__dirname, `../../data/marking/leave-full-aggregate-smooth.csv`)
   );
 
   return dfd.toJSON(df).map((x) => ({
