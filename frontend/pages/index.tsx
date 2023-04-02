@@ -31,7 +31,7 @@ const StyledTypography = styled(Typography)`
 `;
 
 const InnerBlock = styled(Box)`
-  background-color: #49454f;
+  background-color: black;
 `;
 
 const GraphWrap = styled(Box)`
@@ -177,7 +177,7 @@ const Index = () => {
   const [wordstatsVariations, setWordstatsVariations] = useState<{ value: string; title: string }[]>([]);
   const [keyword, setKeyword] = useState('парфюм');
 
-  const [date, setDate] = useState<Date>(new Date('2022-12-22'));
+  const [date, setDate] = useState<Date|null>(new Date('2022-12-22'));
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<AxiosError>();
   useEffect(() => {
@@ -469,9 +469,6 @@ const Index = () => {
             </Typography>
             <DatePicker value={date} onChange={(value) => setDate(value)} minDate={new Date('2021-11-27')} />
           </BoxWrapper>
-          <StyledButton disabled={!keyword} onClick={() => onSend()}>
-            Запустить
-          </StyledButton>
         </InputBoxWrapper>
         <InnerBlock>
           <BoxWrapper>
@@ -504,9 +501,6 @@ const Index = () => {
                   options={wordstatsVariations}
               />
             </BoxWrapper>
-            <StyledButton disabled={!keyword} onClick={() => onSend()}>
-              Запустить
-            </StyledButton>
           </InputBoxWrapper>
           <BoxWrapper>
             <GraphWrap>
