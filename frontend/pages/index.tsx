@@ -474,18 +474,12 @@ const Index = () => {
           <BoxWrapper>
             <GraphWrap>
               <Typography variant="subtitle2">Гипотеза #1. Прогнозирование объёмов ввода товаров в оборот</Typography>
-              <Line height={300} width={900} data={enterData} options={enterOptions} />
+              <Line height={300} width={1200} data={enterData} options={enterOptions} />
               <Typography variant="subtitle2">Гипотеза #1. Прогнозирование объёмов ввода товаров в оборот (накопительный)</Typography>
-              <Line height={300} width={900} data={enterCumData} options={enterOptions} />
+              <Line height={300} width={1200} data={enterCumData} options={enterOptions} />
             </GraphWrap>
           </BoxWrapper>
           <InputBoxWrapper display="flex" gap={5} justifyContent={'space-between'} alignItems={'self-end'} bottom={15}>
-            <BoxWrapper flexGrow={2}>
-              <Typography variant="subtitle2" fontSize={20}>
-                Дата начала прогноза
-              </Typography>
-              <DatePicker value={date} onChange={(value) => setDate(value)} minDate={new Date('2021-11-27')} />
-            </BoxWrapper>
             <BoxWrapper flexGrow={2}>
               <Typography variant="subtitle2" fontSize={20}>
                 Поисковой запрос
@@ -505,9 +499,9 @@ const Index = () => {
           <BoxWrapper>
             <GraphWrap>
               <Typography variant="subtitle2">Гипотеза #2. Прогнозирование спроса на товары</Typography>
-              <Line height={300} width={900} data={leaveData} options={leaveOptions} />
+              <Line height={300} width={1200} data={leaveData} options={leaveOptions} />
               <Typography variant="subtitle2">Гипотеза #2. Прогнозирование спроса на товары (накопительный)</Typography>
-              <Line height={300} width={900} data={leaveCumData} options={leaveOptions} />
+              <Line height={300} width={1200} data={leaveCumData} options={leaveOptions} />
             </GraphWrap>
           </BoxWrapper>
         </InnerBlock>
