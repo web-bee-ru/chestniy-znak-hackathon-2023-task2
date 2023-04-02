@@ -1,10 +1,10 @@
-import { Autocomplete, Box, Button, styled, TextField, Typography } from '@mui/material';
-import { useEffect, useMemo, useState } from 'react';
-import { isAxiosError } from '@/src/lifecycle/services';
+import {Autocomplete, Box, Button, styled, TextField, Typography} from '@mui/material';
+import {useEffect, useMemo, useState} from 'react';
+import {isAxiosError} from '@/src/lifecycle/services';
 
-import { Chart as ChartJS, ChartData, ChartOptions, registerables } from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import { AxiosError } from 'axios';
+import {Chart as ChartJS, ChartData, ChartOptions, registerables} from 'chart.js';
+import {Line} from 'react-chartjs-2';
+import {AxiosError} from 'axios';
 import {
   fetchAvailableNames,
   fetchPredictEnterWordstats,
@@ -118,7 +118,7 @@ const Index = () => {
         setIsLoading(true);
         const availableNamesRes = await fetchAvailableNames();
         const enterRes = await fetchPredictEnterWordstats('2022-11-22');
-        const leaveRes = await fetchPredictLeaveWordstats('парфюм', '2022-11-22');
+        const leaveRes = await fetchPredictLeaveWordstats('парфюм', '2022-06-01');
 
         setEnterStats(enterRes.data);
         setLeaveStats(leaveRes.data);

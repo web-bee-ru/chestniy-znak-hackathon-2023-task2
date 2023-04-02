@@ -1,21 +1,13 @@
 import Koa from "koa";
 import cors from "@koa/cors";
-import { koaBody } from "koa-body";
+import {koaBody} from "koa-body";
 import Router from "@koa/router";
 import * as dateFns from "date-fns";
 
-import { googleWordStatsDaily } from "./modules/wordstats";
+import {googleWordStatsDaily} from "./modules/wordstats";
 import mem from "mem";
-import fs from "node:fs/promises";
-import path from "node:path";
-import * as dfd from "danfojs-node";
-import {
-  getEnterHistory,
-  getGoogleStats,
-  getLeaveHistory,
-  getYandexStats,
-} from "./modules/utils";
-import { analyze, calculate } from "./modules/neural/analyze";
+import {getEnterHistory, getGoogleStats, getLeaveHistory, getYandexStats,} from "./modules/utils";
+import {calculateLeave} from "./modules/neural/analyze";
 import _ from "lodash";
 
 const app = new Koa();
@@ -85,7 +77,7 @@ router.get("/predict/enter", async (ctx, next) => {
 
 router.get("/predict/leave", async (ctx, next) => {
   const name = ctx.query.name as string;
-  const date = new Date(ctx.query.date as string);
+  const date = dateFns.format(new Date(ctx.query.date as string), 'yyyy-MM-dd')
 
   const [yandexStats, googleStats, leave] = await Promise.all([
     getYandexStats(name).then((stats) => {
@@ -104,13 +96,11 @@ router.get("/predict/leave", async (ctx, next) => {
     getLeaveHistory(),
   ]);
 
-  const dateRaw = "2022-11-17";
-
   const before = leave.slice(
     0,
-    leave.findIndex((x) => x.date === dateRaw)
+    leave.findIndex((x) => x.date === date)
   );
-  const after = leave.slice(leave.findIndex((x) => x.date === dateRaw));
+  const after = leave.slice(leave.findIndex((x) => x.date === date));
 
   console.log(before.length);
   console.log(after.length);
@@ -119,19 +109,15 @@ router.get("/predict/leave", async (ctx, next) => {
     leave: {
       before: before,
       after: after,
-      predict: await calculate(dateRaw).then((data) =>
+      predict: await calculateLeave(date, name).then((data) =>
         data.map((x, idx) => ({
           date: dateFns.format(
-            dateFns.addDays(new Date(dateRaw), idx),
+            dateFns.addDays(new Date(date), idx),
             "yyyy-MM-dd"
           ),
           value: x,
         }))
       ),
-      // predict: leave.slice(Math.ceil(leave.length * 0.7)).map((x) => ({
-      //   ...x,
-      //   value: Math.round(x.value + x.value * Math.random() * 0.2),
-      // })),
     },
     stats: {
       google: googleStats,

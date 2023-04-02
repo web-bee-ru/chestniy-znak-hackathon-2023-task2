@@ -1,8 +1,8 @@
 import * as tf from "@tensorflow/tfjs-node";
 import fs from "node:fs/promises";
 import * as dfd from "danfojs-node";
+import {getGoogleStats} from "../utils";
 import path from "node:path";
-import { getGoogleStats } from "../utils";
 
 interface Analyze {
   history_size: number;
@@ -111,9 +111,7 @@ export async function analyze(
 
   console.log(raw, params);
 
-  const datasetPath =
-    "D:/Bitbucket/chestniy-znak-hackathon-2023-task2/data/models/leave/dataset.csv";
-  // const df = await dfd.readCSV(datasetPath, { frameConfig: { index: ["dt"] } });
+  const datasetPath = path.join(__dirname, '../../../data/models/leave/dataset.csv')
   let df = await dfd.readCSV(datasetPath);
 
   const index = df["dt"].values.indexOf(date);
@@ -185,8 +183,8 @@ export async function analyze(
 //   console.table(result);
 // }
 
-export const calculate = async (date: string) => {
-  const stats = await getGoogleStats("парфюм");
+export const calculateLeave = async (date: string, name: string) => {
+  const stats = await getGoogleStats(name);
 
   return analyze(date, stats).then((data) => {
     console.log(data);
