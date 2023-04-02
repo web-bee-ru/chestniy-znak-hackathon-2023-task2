@@ -3,7 +3,7 @@ import path from "node:path";
 import _ from "lodash";
 import * as dateFns from "date-fns";
 
-import { linearInterpolation } from "simple-linear-interpolation";
+import {linearInterpolation} from "simple-linear-interpolation";
 
 export const getYandexStats = async (
   name: string
@@ -77,7 +77,7 @@ export const getEnterHistory = async (): Promise<
   { date: string; value: number }[]
 > => {
   const df = await dfd.readCSV(
-    path.join(__dirname, `../../data/marking/enter-aggregate.csv`)
+    path.join(__dirname, `../../data/marking/enter-aggregate-smooth.csv`)
   );
 
   return dfd.toJSON(df).map((x) => ({
@@ -90,7 +90,7 @@ export const getLeaveHistory = async (): Promise<
   { date: string; value: number }[]
 > => {
   const df = await dfd.readCSV(
-    path.join(__dirname, `../../data/marking/leave-aggregate.csv`)
+    path.join(__dirname, `../../data/marking/leave-aggregate-smooth.csv`)
   );
 
   return dfd.toJSON(df).map((x) => ({

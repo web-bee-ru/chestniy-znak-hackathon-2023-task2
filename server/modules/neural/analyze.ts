@@ -81,18 +81,12 @@ async function predict(
 //   pr: number | null;
 // }
 
-export async function analyze(
-  date: string,
-  stats: { date: string; value: number }[]
-): Promise<number[]> {
-  const leave = await load("../data/models/leave");
-
+const getParams = async (target: 'leave' | 'enter') => {
   const csv = (
-    await fs.readFile("../data/models/leave" + "/params.csv", {
-      encoding: "utf8",
-    })
+      await fs.readFile(`../data/models/${target}/params.csv`, {
+        encoding: "utf8",
+      })
   ).replaceAll("\r", "");
-
   const [keys, values] = csv.split("\n").map((line) => line.split(","));
   const raw: Record<string, string> = {};
   for (let idx = 0; idx < keys.length; idx++) {
@@ -111,6 +105,15 @@ export async function analyze(
 
   console.log(raw, params);
 
+  return params
+}
+
+export async function analyzeLeave(
+  date: string,
+  stats: { date: string; value: number }[]
+): Promise<number[]> {
+  const leave = await load("../data/models/leave");
+
   const datasetPath = path.join(__dirname, '../../../data/models/leave/dataset.csv')
   let df = await dfd.readCSV(datasetPath);
 
@@ -118,75 +121,79 @@ export async function analyze(
 
   const indexStats = stats.findIndex((x) => x.date === date);
 
+  const params = await getParams('leave')
+
   const statsY = stats
     // .filter((x) => x.date <= date)
     .slice(indexStats - params.history_size, indexStats)
     .map((x) => x.value / params.search_std);
 
   df = df.drop({ columns: ["dt"] });
-  // df = df.drop({ columns: ["search_cnt"] });
 
   df = df.iloc({ rows: [`${index - params.history_size}:${index}`] });
 
   df.print();
 
-  // df.addColumn("search_cnt", statsY, { inplace: true, atIndex: 2 });
+  df = df.drop({ columns: ["search_cnt"] });
+  df.addColumn("search_cnt", statsY, { inplace: true, atIndex: 2 });
 
   df.print();
 
   let history = tf.tensor2d(
-    // df.values.slice(index - params.history_size, index)
     df.values
   );
-  // history.print();
 
   const shaped = history.reshape([df.values[0].length * params.history_size]);
 
   shaped.print();
 
-  // const predicted7 = await enter(shaped);
   const predicted = await leave(params, (await shaped.array()) as number[]);
 
-  // console.log(params.y_std, params.y_std, params.y_std, params.y_std);
-
   return predicted.map((x) => x * params.y_std);
-
-  // return predicted.map((x) => x * params.y_std);
-  // const length = data.length;
-  // const results: Result[] = new Array(length);
-  // for (let idx = 0; idx < length; idx++) {
-  //   const offset = idx - length;
-  //   const v = data[data.length + offset];
-  //   const e7 = exact7[exact7.length + offset + predicted7.length] ?? null;
-  //   const p7 = predicted7[predicted7.length + offset] ?? null;
-  //   const e21 = exact21[exact21.length + offset + predicted.length] ?? null;
-  //   const p21 = predicted[predicted.length + offset] ?? null;
-  //   const a7 = e7 ?? p7;
-  //   const a21 = e21 ?? p21;
-  //   const er = e7 != null && e21 != null ? (e7 - e21) / (e7 + e21) : null;
-  //   const pr =
-  //     (e7 == null || e21 == null) && a7 != null && a21 != null
-  //       ? (a7 - a21) / (a7 + a21)
-  //       : null;
-  //   results[idx] = { v, e7, p7, e21, p21, er, pr };
-  // }
-  // return results;
 }
 
-// async function main(): Promise<void> {
-//   const data = [
-//     1, 0, 0, 2, 0, 0, 2, 2, 8, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
-//     2, 1, 3, 2, 8, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 0, 0, 0, 8, 2, 2, 1, 6, 0,
-//     0, 5, 0, 1, 1, 0, 4, 3, 1, 1, 0, 3,
-//   ];
-//   const result = await analyze(data);
-//   console.table(result);
-// }
+export async function analyzeEnter(
+    date: string,
+): Promise<number[]> {
+  const enter = await load("../data/models/enter");
+
+  const datasetPath = path.join(__dirname, '../../../data/models/enter/dataset.csv')
+  let df = await dfd.readCSV(datasetPath);
+
+  const index = df["dt"].values.indexOf(date);
+
+  const params = await getParams('enter')
+
+  df = df.drop({ columns: ["dt"] });
+
+  df = df.iloc({ rows: [`${index - params.history_size}:${index}`] });
+
+  df.print();
+
+  let history = tf.tensor2d(
+      df.values
+  );
+
+  const shaped = history.reshape([df.values[0].length * params.history_size]);
+
+  shaped.print();
+
+  const predicted = await enter(params, (await shaped.array()) as number[]);
+
+  return predicted.map((x) => x * params.y_std);
+}
 
 export const calculateLeave = async (date: string, name: string) => {
   const stats = await getGoogleStats(name);
 
-  return analyze(date, stats).then((data) => {
+  return analyzeLeave(date, stats).then((data) => {
+    console.log(data);
+    return data;
+  });
+};
+
+export const calculateEnter = async (date: string) => {
+  return analyzeEnter(date).then((data) => {
     console.log(data);
     return data;
   });

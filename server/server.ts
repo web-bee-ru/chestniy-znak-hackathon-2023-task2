@@ -7,7 +7,7 @@ import * as dateFns from "date-fns";
 import {googleWordStatsDaily} from "./modules/wordstats";
 import mem from "mem";
 import {getEnterHistory, getGoogleStats, getLeaveHistory, getYandexStats,} from "./modules/utils";
-import {calculateLeave} from "./modules/neural/analyze";
+import {calculateEnter, calculateLeave} from "./modules/neural/analyze";
 import _ from "lodash";
 
 const app = new Koa();
@@ -59,18 +59,29 @@ router.get("/wordstats/yandex", async (ctx, next) => {
 });
 
 router.get("/predict/enter", async (ctx, next) => {
-  const date = new Date(ctx.query.date as string);
+  const date = dateFns.format(new Date(ctx.query.date as string), 'yyyy-MM-dd')
 
   const [enter] = await Promise.all([getEnterHistory()]);
 
+  const before = enter.slice(
+      0,
+      enter.findIndex((x) => x.date === date)
+  );
+  const after = enter.slice(enter.findIndex((x) => x.date === date));
+
   ctx.body = {
     enter: {
-      before: enter.slice(0, Math.ceil(enter.length * 0.7)),
-      after: enter.slice(Math.ceil(enter.length * 0.7)),
-      predict: enter.slice(Math.ceil(enter.length * 0.7)).map((x) => ({
-        ...x,
-        value: Math.round(x.value + x.value * Math.random() * 0.2),
-      })),
+      before: before,
+      after: after,
+      predict: await calculateEnter(date).then((data) =>
+          data.map((x, idx) => ({
+            date: dateFns.format(
+                dateFns.addDays(new Date(date), idx),
+                "yyyy-MM-dd"
+            ),
+            value: x,
+          }))
+      ),
     },
   };
 });
@@ -90,7 +101,7 @@ router.get("/predict/leave", async (ctx, next) => {
         }))
         .filter((x) => x.date >= "2021-11-01");
     }),
-    getGoogleStats(name).then((stats) =>
+    getGoogleStats(name, false).then((stats) =>
       stats.filter((x) => x.date >= "2021-11-01")
     ),
     getLeaveHistory(),

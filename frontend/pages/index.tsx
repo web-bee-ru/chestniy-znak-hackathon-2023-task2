@@ -117,8 +117,8 @@ const Index = () => {
       try {
         setIsLoading(true);
         const availableNamesRes = await fetchAvailableNames();
-        const enterRes = await fetchPredictEnterWordstats('2022-11-22');
-        const leaveRes = await fetchPredictLeaveWordstats('парфюм', '2022-06-01');
+        const enterRes = await fetchPredictEnterWordstats('2022-11-17');
+        const leaveRes = await fetchPredictLeaveWordstats('парфюм', '2022-11-17');
 
         setEnterStats(enterRes.data);
         setLeaveStats(leaveRes.data);
@@ -271,7 +271,7 @@ const Index = () => {
   }
 
   return !isLoading ? (
-    <Box display="flex" flexDirection="column" gap={2}>
+    <Box display="flex" flexDirection="column" gap={2} style={{ overflow: 'scroll' }}>
       <Box display="flex" gap={5} justifyContent={'space-between'}>
         <BoxWrapper flexGrow={2}>
           <Typography variant="subtitle2" fontSize={20}>
@@ -297,11 +297,11 @@ const Index = () => {
       </Box>
       <BoxWrapper>
         <Typography variant="subtitle2">Гипотеза #1. Прогнозирование объёмов ввода товаров в оборот</Typography>
-        <Line height={300} width={1800} data={enterData} options={enterOptions} />
+        <Line height={500} width={1800} data={enterData} options={enterOptions} />
       </BoxWrapper>
       <BoxWrapper>
         <Typography variant="subtitle2">Гипотеза #2. Прогнозирование спроса на товары</Typography>
-        <Line height={300} width={1800} data={leaveData} options={leaveOptions} />
+        <Line height={500} width={1800} data={leaveData} options={leaveOptions} />
       </BoxWrapper>
     </Box>
   ) : (
