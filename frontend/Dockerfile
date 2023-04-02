@@ -1,16 +1,17 @@
+# Choose builder base image
 FROM node:16-alpine
 
 # Create app directory
-WORKDIR /frontend/app
+WORKDIR /srv/app
 
 # Install app dependencies
-COPY frontend/package.json frontend/package-lock.json ./
+COPY package.json package-lock.json ./
 
 RUN npm i
 
-RUN next build
-
 COPY . .
 
+RUN npm run build
+
 # Start app
-CMD next start
+CMD npm run start

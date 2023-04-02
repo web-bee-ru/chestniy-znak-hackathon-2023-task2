@@ -202,7 +202,7 @@ const Index = () => {
       'date',
     )
       .map(({ date }) => date)
-      .sort((a, b) => new Date(a) - new Date(b));
+      .sort((a, b) => +new Date(a) - +new Date(b));
 
     return {
       labels,
