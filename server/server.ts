@@ -102,6 +102,8 @@ router.get("/predict/leave", async (ctx, next) => {
     getLeaveHistory(),
   ]);
 
+  console.log(leave);
+
   ctx.body = {
     leave: {
       before: leave.slice(0, Math.ceil(leave.length * 0.7)),

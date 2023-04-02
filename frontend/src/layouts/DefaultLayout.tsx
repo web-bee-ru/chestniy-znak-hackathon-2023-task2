@@ -1,0 +1,26 @@
+import { Box, styled } from '@mui/material';
+import { PropChildren } from '@/src/types/UtilityProps';
+
+const Container = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+`;
+
+const ContentBox = styled(Box)`
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  padding: ${({ theme }) => theme.spacing(5)};
+`;
+
+const DefaultLayout = ({ children }: PropChildren) => {
+  return (
+    <Container>
+      <ContentBox>{children}</ContentBox>
+    </Container>
+  );
+};
+
+export default DefaultLayout;
