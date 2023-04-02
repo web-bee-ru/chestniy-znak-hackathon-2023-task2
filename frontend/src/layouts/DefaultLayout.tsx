@@ -11,7 +11,8 @@ const Container = styled(Box)`
 const ContentBox = styled(Box)`
   height: 100%;
   display: flex;
-  overflow: hidden;
+  background-color: #1d192b;
+  overflow: auto;
   padding: ${({ theme }) => theme.spacing(5)};
 `;
 
