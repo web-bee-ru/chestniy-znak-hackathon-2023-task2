@@ -147,7 +147,7 @@ const Index = () => {
         setIsLoading(true);
         const availableNamesRes = await fetchAvailableNames();
         const enterRes = await fetchPredictEnterWordstats(date.toISOString());
-        const leaveRes = await fetchPredictLeaveWordstats(keyword, date.toISOString());
+        const leaveRes = await fetchPredictLeaveWordstats(keyword || 'парфюм', date.toISOString());
 
         setEnterStats(enterRes.data);
         setLeaveStats(leaveRes.data);
