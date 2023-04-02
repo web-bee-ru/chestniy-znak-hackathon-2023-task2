@@ -310,7 +310,7 @@ const Index = () => {
             <Typography variant="subtitle2" fontSize={20}>
               Дата начала прогноза
             </Typography>
-            <DatePicker value={date} onChange={(value) => setDate(value)} minDate={new Date('2021-11-22')} />
+            <DatePicker value={date} onChange={(value) => setDate(value)} minDate={new Date('2021-11-27')} />
           </BoxWrapper>
           <StyledButton disabled={!keyword} onClick={() => onSend()}>
             Запустить
@@ -328,7 +328,7 @@ const Index = () => {
               <Typography variant="subtitle2" fontSize={20}>
                 Дата начала прогноза
               </Typography>
-              <DatePicker value={date} onChange={(value) => setDate(value)} minDate={new Date('2021-11-22')} />
+              <DatePicker value={date} onChange={(value) => setDate(value)} minDate={new Date('2021-11-27')} />
             </BoxWrapper>
             <BoxWrapper flexGrow={2}>
               <Typography variant="subtitle2" fontSize={20}>
