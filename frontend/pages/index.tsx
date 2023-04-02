@@ -219,6 +219,66 @@ const Index = () => {
     };
   }, [enterStats]);
 
+  const enterCumData = useMemo<ChartData<any, any, any>>(() => {
+    const beforeStats = enterStats?.enterCum.before ?? [];
+    const afterStats = enterStats?.enterCum.after ?? [];
+    const predictStats = enterStats?.enterCum.predict ?? [];
+
+    const labels = distinctConcatObjectArray(
+      distinctConcatObjectArray(beforeStats, afterStats, 'date'),
+      predictStats,
+      'date',
+    ).map(({ date }) => date);
+
+    return {
+      labels,
+      datasets: [
+        {
+          label: 'beforeStats',
+          data: beforeStats,
+          fill: 'smooth',
+          cubicInterpolationMode: 'monotone',
+          borderColor: 'rgba(88,80,239,0.89)',
+          tension: 0.1,
+          yAxisID: 'y',
+          order: 1,
+          parsing: {
+            xAxisKey: 'date',
+            yAxisKey: 'value',
+          },
+        },
+        {
+          label: 'afterStats',
+          data: afterStats,
+          fill: 'smooth',
+          cubicInterpolationMode: 'monotone',
+          borderColor: 'rgba(161,91,231,0.81)',
+          tension: 0.1,
+          yAxisID: 'y',
+          order: 1,
+          parsing: {
+            xAxisKey: 'date',
+            yAxisKey: 'value',
+          },
+        },
+        {
+          label: 'predictStats',
+          data: predictStats,
+          fill: 'smooth',
+          cubicInterpolationMode: 'monotone',
+          borderColor: 'rgba(80,239,144,0.89)',
+          tension: 0.1,
+          yAxisID: 'y',
+          order: 0,
+          parsing: {
+            xAxisKey: 'date',
+            yAxisKey: 'value',
+          },
+        },
+      ],
+    };
+  }, [enterStats]);
+
   const onSend = useCallback(() => {
     return undefined;
   }, []);
@@ -299,6 +359,64 @@ const Index = () => {
     };
   }, [leaveStats]);
 
+  const leaveCumData = useMemo<ChartData<any, any, any>>(() => {
+    const beforeStats = leaveStats?.leaveCum.before ?? [];
+    const afterStats = leaveStats?.leaveCum.after ?? [];
+    const predictStats = leaveStats?.leaveCum.predict ?? [];
+
+    const labels = distinctConcatObjectArray(distinctConcatObjectArray(beforeStats, afterStats, 'date'), predictStats, 'date')
+      .map(({ date }) => date)
+      .sort((a, b) => +new Date(a) - +new Date(b));
+
+    return {
+      labels,
+      datasets: [
+        {
+          label: 'beforeStats',
+          data: beforeStats,
+          fill: 'smooth',
+          cubicInterpolationMode: 'monotone',
+          borderColor: 'rgba(88,80,239,0.89)',
+          tension: 0.1,
+          yAxisID: 'y',
+          order: 1,
+          parsing: {
+            xAxisKey: 'date',
+            yAxisKey: 'value',
+          },
+        },
+        {
+          label: 'afterStats',
+          data: afterStats,
+          fill: 'smooth',
+          cubicInterpolationMode: 'monotone',
+          borderColor: 'rgba(161,91,231,0.81)',
+          tension: 0.1,
+          yAxisID: 'y',
+          order: 1,
+          parsing: {
+            xAxisKey: 'date',
+            yAxisKey: 'value',
+          },
+        },
+        {
+          label: 'predictStats',
+          data: predictStats,
+          fill: 'smooth',
+          cubicInterpolationMode: 'monotone',
+          borderColor: 'rgba(80,239,144,0.89)',
+          tension: 0.1,
+          yAxisID: 'y',
+          order: 0,
+          parsing: {
+            xAxisKey: 'date',
+            yAxisKey: 'value',
+          },
+        },
+      ],
+    };
+  }, [leaveStats]);
+
   if (error) {
     return <Box>{error.message}</Box>;
   }
@@ -321,6 +439,8 @@ const Index = () => {
             <GraphWrap>
               <Typography variant="subtitle2">Гипотеза #1. Прогнозирование объёмов ввода товаров в оборот</Typography>
               <Line height={300} width={900} data={enterData} options={enterOptions} />
+              <Typography variant="subtitle2">Гипотеза #1. Прогнозирование объёмов ввода товаров в оборот (накопительный)</Typography>
+              <Line height={300} width={900} data={enterCumData} options={enterOptions} />
             </GraphWrap>
           </BoxWrapper>
           <InputBoxWrapper display="flex" gap={5} justifyContent={'space-between'} alignItems={'self-end'} bottom={15}>
@@ -353,6 +473,8 @@ const Index = () => {
             <GraphWrap>
               <Typography variant="subtitle2">Гипотеза #2. Прогнозирование спроса на товары</Typography>
               <Line height={300} width={900} data={leaveData} options={leaveOptions} />
+              <Typography variant="subtitle2">Гипотеза #2. Прогнозирование спроса на товары (накопительный)</Typography>
+              <Line height={300} width={900} data={leaveCumData} options={leaveOptions} />
             </GraphWrap>
           </BoxWrapper>
         </InnerBlock>
