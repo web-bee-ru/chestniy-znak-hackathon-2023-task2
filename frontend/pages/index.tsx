@@ -1,10 +1,10 @@
-import { Autocomplete, Box, Button, styled, TextField, Typography } from '@mui/material';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { isAxiosError } from '@/src/lifecycle/services';
-import { DatePicker } from '@mui/x-date-pickers';
-import { Chart as ChartJS, ChartData, ChartOptions, registerables } from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import { AxiosError } from 'axios';
+import {Autocomplete, Box, Button, styled, TextField, Typography} from '@mui/material';
+import {useCallback, useEffect, useMemo, useState} from 'react';
+import {isAxiosError} from '@/src/lifecycle/services';
+import {DatePicker} from '@mui/x-date-pickers';
+import {Chart as ChartJS, ChartData, ChartOptions, registerables} from 'chart.js';
+import {Line} from 'react-chartjs-2';
+import {AxiosError} from 'axios';
 import {
   fetchAvailableNames,
   fetchPredictEnterWordstats,
@@ -136,9 +136,9 @@ const Index = () => {
   const [enterStats, setEnterStats] = useState<{ enter: DefaultStats }>();
   const [leaveStats, setLeaveStats] = useState<{ leave: DefaultStats; stats: { yandex: Stats[]; google: Stats[] } }>();
   const [wordstatsVariations, setWordstatsVariations] = useState<{ value: string; title: string }[]>([]);
-  const [keyword, setKeyword] = useState('2022-11-22');
+  const [keyword, setKeyword] = useState('парфюм');
 
-  const [date, setDate] = useState<any>(new Date('2022-12-22'));
+  const [date, setDate] = useState<Date>(new Date('2022-12-22'));
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<AxiosError>();
   useEffect(() => {
@@ -146,8 +146,8 @@ const Index = () => {
       try {
         setIsLoading(true);
         const availableNamesRes = await fetchAvailableNames();
-        const enterRes = await fetchPredictEnterWordstats('2022-11-17');
-        const leaveRes = await fetchPredictLeaveWordstats('парфюм', '2022-11-17');
+        const enterRes = await fetchPredictEnterWordstats(date.toISOString());
+        const leaveRes = await fetchPredictLeaveWordstats(keyword, date.toISOString());
 
         setEnterStats(enterRes.data);
         setLeaveStats(leaveRes.data);
@@ -157,7 +157,7 @@ const Index = () => {
         if (isAxiosError(e)) setError(e);
       }
     })();
-  }, []);
+  }, [date, keyword]);
 
   const enterData = useMemo<ChartData<any, any, any>>(() => {
     const beforeStats = enterStats?.enter.before ?? [];
@@ -302,63 +302,62 @@ const Index = () => {
   if (error) {
     return <Box>{error.message}</Box>;
   }
-  return !isLoading ? (
-    <Box display="flex" flexDirection="column" gap={2} style={{ margin: '0 auto' }}>
-      <StyledTypography color={'white'}>Система предиктивной аналитики рынка</StyledTypography>
-      <InputBoxWrapper display="flex" gap={5} justifyContent={'space-between'} alignItems={'self-end'} top={30}>
-        <BoxWrapper flexGrow={1}>
-          <Typography variant="subtitle2" fontSize={20}>
-            Дата начала прогноза
-          </Typography>
-          <DatePicker value={date} onChange={(value) => setDate(value)} minDate={new Date('2022-11-22')} />
-        </BoxWrapper>
-        <StyledButton disabled={!keyword} onClick={() => onSend()}>
-          Запустить
-        </StyledButton>
-      </InputBoxWrapper>
-      <InnerBlock>
-        <BoxWrapper>
-          <GraphWrap>
-            <Typography variant="subtitle2">Гипотеза #1. Прогнозирование объёмов ввода товаров в оборот</Typography>
-            <Line height={300} width={900} data={enterData} options={enterOptions} />
-          </GraphWrap>
-        </BoxWrapper>
-        <InputBoxWrapper display="flex" gap={5} justifyContent={'space-between'} alignItems={'self-end'} bottom={15}>
-          <BoxWrapper flexGrow={2}>
+  return (
+      <Box display="flex" flexDirection="column" gap={2} style={{ margin: '0 auto' }}>
+        <StyledTypography color={'white'}>Система предиктивной аналитики рынка</StyledTypography>
+        <InputBoxWrapper display="flex" gap={5} justifyContent={'space-between'} alignItems={'self-end'} top={30}>
+          <BoxWrapper flexGrow={1}>
             <Typography variant="subtitle2" fontSize={20}>
               Дата начала прогноза
             </Typography>
-            <DatePicker value={date} onChange={(value) => setDate(value)} minDate={new Date('2022-11-22')} />
-          </BoxWrapper>
-          <BoxWrapper flexGrow={2}>
-            <Typography variant="subtitle2" fontSize={20}>
-              Поисковой запрос
-            </Typography>
-            <Autocomplete
-              onChange={(_event, value) => {
-                setKeyword(value?.value ?? '');
-                return value;
-              }}
-              getOptionLabel={(option) => option.title}
-              renderInput={(params) => <TextField {...params} />}
-              options={wordstatsVariations}
-            />
+            <DatePicker value={date} onChange={(value) => setDate(value)} minDate={new Date('2021-11-22')} />
           </BoxWrapper>
           <StyledButton disabled={!keyword} onClick={() => onSend()}>
             Запустить
           </StyledButton>
         </InputBoxWrapper>
-        <BoxWrapper>
-          <GraphWrap>
-            <Typography variant="subtitle2">Гипотеза #2. Прогнозирование спроса на товары</Typography>
-            <Line height={300} width={900} data={leaveData} options={leaveOptions} />
-          </GraphWrap>
-        </BoxWrapper>
-      </InnerBlock>
-    </Box>
-  ) : (
-    <Box>Loading ...</Box>
-  );
+        <InnerBlock>
+          <BoxWrapper>
+            <GraphWrap>
+              <Typography variant="subtitle2">Гипотеза #1. Прогнозирование объёмов ввода товаров в оборот</Typography>
+              <Line height={300} width={900} data={enterData} options={enterOptions} />
+            </GraphWrap>
+          </BoxWrapper>
+          <InputBoxWrapper display="flex" gap={5} justifyContent={'space-between'} alignItems={'self-end'} bottom={15}>
+            <BoxWrapper flexGrow={2}>
+              <Typography variant="subtitle2" fontSize={20}>
+                Дата начала прогноза
+              </Typography>
+              <DatePicker value={date} onChange={(value) => setDate(value)} minDate={new Date('2021-11-22')} />
+            </BoxWrapper>
+            <BoxWrapper flexGrow={2}>
+              <Typography variant="subtitle2" fontSize={20}>
+                Поисковой запрос
+              </Typography>
+              <Autocomplete
+                  onChange={(_event, value) => {
+                    setKeyword(value?.value ?? '');
+                    return value;
+                  }}
+                  value={wordstatsVariations.find(x => x.value === keyword)}
+                  getOptionLabel={(option) => option.title}
+                  renderInput={(params) => <TextField {...params} />}
+                  options={wordstatsVariations}
+              />
+            </BoxWrapper>
+            <StyledButton disabled={!keyword} onClick={() => onSend()}>
+              Запустить
+            </StyledButton>
+          </InputBoxWrapper>
+          <BoxWrapper>
+            <GraphWrap>
+              <Typography variant="subtitle2">Гипотеза #2. Прогнозирование спроса на товары</Typography>
+              <Line height={300} width={900} data={leaveData} options={leaveOptions} />
+            </GraphWrap>
+          </BoxWrapper>
+        </InnerBlock>
+      </Box>
+  )
 };
 
 export default Index;
