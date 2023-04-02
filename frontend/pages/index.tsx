@@ -12,6 +12,9 @@ import {
 } from '@/src/services/fetchers/wordstats';
 
 ChartJS.register(...registerables);
+if (typeof window !== 'undefined') {
+  import('chartjs-plugin-zoom').then(module => ChartJS.register(module.default));
+}
 
 const BoxWrapper = styled(Box)`
   display: flex;
@@ -78,6 +81,24 @@ const enterOptions: ChartOptions<any> = {
     legend: {
       position: 'top' as const,
     },
+    zoom: {
+      pan: {
+        enabled: true,
+        modifierKey: 'shift',
+      },
+      zoom: {
+        wheel: {
+          enabled: true,
+        },
+        pinch: {
+          enabled: true,
+        },
+        drag: {
+          enabled: true
+        },
+        mode: 'xy',
+      },
+    },
   },
   datasets: {
     line: {
@@ -91,6 +112,24 @@ const leaveOptions: ChartOptions<any> = {
   plugins: {
     legend: {
       position: 'top' as const,
+    },
+    zoom: {
+      pan: {
+        enabled: true,
+        modifierKey: 'shift',
+      },
+      zoom: {
+        wheel: {
+          enabled: true,
+        },
+        pinch: {
+          enabled: true,
+        },
+        drag: {
+          enabled: true
+        },
+        mode: 'xy',
+      },
     },
   },
   datasets: {
