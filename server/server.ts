@@ -2,6 +2,8 @@ import Koa from "koa";
 import cors from "@koa/cors";
 import { koaBody } from "koa-body";
 import Router from "@koa/router";
+import * as dateFns from "date-fns";
+
 import { googleWordStatsDaily } from "./modules/wordstats";
 import mem from "mem";
 import fs from "node:fs/promises";
@@ -13,7 +15,7 @@ import {
   getLeaveHistory,
   getYandexStats,
 } from "./modules/utils";
-import { analyze } from "./modules/neural/analyze";
+import { analyze, calculate } from "./modules/neural/analyze";
 import _ from "lodash";
 
 const app = new Koa();
@@ -102,16 +104,34 @@ router.get("/predict/leave", async (ctx, next) => {
     getLeaveHistory(),
   ]);
 
-  console.log(leave);
+  const dateRaw = "2022-11-17";
+
+  const before = leave.slice(
+    0,
+    leave.findIndex((x) => x.date === dateRaw)
+  );
+  const after = leave.slice(leave.findIndex((x) => x.date === dateRaw));
+
+  console.log(before.length);
+  console.log(after.length);
 
   ctx.body = {
     leave: {
-      before: leave.slice(0, Math.ceil(leave.length * 0.7)),
-      after: leave.slice(Math.ceil(leave.length * 0.7)),
-      predict: leave.slice(Math.ceil(leave.length * 0.7)).map((x) => ({
-        ...x,
-        value: Math.round(x.value + x.value * Math.random() * 0.2),
-      })),
+      before: before,
+      after: after,
+      predict: await calculate(dateRaw).then((data) =>
+        data.map((x, idx) => ({
+          date: dateFns.format(
+            dateFns.addDays(new Date(dateRaw), idx),
+            "yyyy-MM-dd"
+          ),
+          value: x,
+        }))
+      ),
+      // predict: leave.slice(Math.ceil(leave.length * 0.7)).map((x) => ({
+      //   ...x,
+      //   value: Math.round(x.value + x.value * Math.random() * 0.2),
+      // })),
     },
     stats: {
       google: googleStats,

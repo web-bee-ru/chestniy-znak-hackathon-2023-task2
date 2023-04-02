@@ -1,6 +1,9 @@
 import * as dfd from "danfojs-node";
 import path from "node:path";
 import _ from "lodash";
+import * as dateFns from "date-fns";
+
+import { linearInterpolation } from "simple-linear-interpolation";
 
 export const getYandexStats = async (
   name: string
@@ -29,7 +32,8 @@ export const getYandexStats = async (
 };
 
 export const getGoogleStats = async (
-  name: string
+  name: string,
+  interpolate = true
 ): Promise<{ date: string; value: number }[]> => {
   const df = await dfd.readCSV(
     path.join(__dirname, `../../dictionary/google-trends/${name}.csv`)
@@ -47,6 +51,24 @@ export const getGoogleStats = async (
       value: _.maxBy(x, (y) => y.value).value,
     })
   );
+
+  if (interpolate) {
+    const start = _.minBy(result, (x) => x.date).date;
+    const end = _.maxBy(result, (x) => x.date).date;
+
+    const points = result.map((x) => ({ x: +new Date(x.date), y: x.value }));
+    const calculate = linearInterpolation(points);
+
+    const days = dateFns.eachDayOfInterval({
+      start: new Date(start),
+      end: new Date(end),
+    });
+
+    return days.map((day) => {
+      const value = calculate({ x: +day });
+      return { date: dateFns.format(day, "yyyy-MM-dd"), value };
+    });
+  }
 
   return result;
 };
