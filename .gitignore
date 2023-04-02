@@ -129,6 +129,6 @@ dmypy.json
 .pyre/
 
 # Dataset
-/data
+/data/marking
 
 node_modules
