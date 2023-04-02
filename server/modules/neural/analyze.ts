@@ -128,9 +128,14 @@ export async function analyzeLeave(
     .slice(indexStats - params.history_size, indexStats)
     .map((x) => x.value / params.search_std);
 
-  df = df.drop({ columns: ["dt"] });
+  if (index !== -1) {
+    df = df.iloc({ rows: [`${index - params.history_size}:${index}`] });
+  }
+  else {
+    df = df.iloc({ rows: [`${df["dt"].values.length - params.history_size}:${df["dt"].values.length}`] });
+  }
 
-  df = df.iloc({ rows: [`${index - params.history_size}:${index}`] });
+  df = df.drop({ columns: ["dt"] });
 
   df.print();
 
@@ -164,9 +169,14 @@ export async function analyzeEnter(
 
   const params = await getParams('enter')
 
-  df = df.drop({ columns: ["dt"] });
+  if (index !== -1) {
+    df = df.iloc({ rows: [`${index - params.history_size}:${index}`] });
+  }
+  else {
+    df = df.iloc({ rows: [`${df["dt"].values.length - params.history_size}:${df["dt"].values.length}`] });
+  }
 
-  df = df.iloc({ rows: [`${index - params.history_size}:${index}`] });
+  df = df.drop({ columns: ["dt"] });
 
   df.print();
 

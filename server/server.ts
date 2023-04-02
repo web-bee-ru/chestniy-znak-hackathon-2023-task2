@@ -58,30 +58,50 @@ router.get("/wordstats/yandex", async (ctx, next) => {
   ctx.body = stats;
 });
 
+const cumDays = (days: { date: string, value: number }[]) => {
+  return days.map((v, idx) => ({
+    date: v.date,
+    value: _.sumBy(days.slice(0, idx + 1), x => x.value || 0),
+  }))
+}
+
 router.get("/predict/enter", async (ctx, next) => {
   const date = dateFns.format(new Date(ctx.query.date as string), 'yyyy-MM-dd')
 
-  const [enter] = await Promise.all([getEnterHistory()]);
+  const [data] = await Promise.all([getEnterHistory()]);
 
-  const before = enter.slice(
+  const before = data.slice(
       0,
-      enter.findIndex((x) => x.date === date)
+      data.findIndex((x) => x.date === date)
   );
-  const after = enter.slice(enter.findIndex((x) => x.date === date));
+  const after = data.slice(data.findIndex((x) => x.date === date));
+
+  const dataCalculated = await calculateEnter(date).then(data => data.map((x, idx) => ({
+    date: dateFns.format(
+        dateFns.addDays(new Date(date), idx),
+        "yyyy-MM-dd"
+    ),
+    value: x,
+  })))
+
+  const beforeCum = cumDays(before);
 
   ctx.body = {
     enter: {
-      before: before,
-      after: after,
-      predict: await calculateEnter(date).then((data) =>
-          data.map((x, idx) => ({
-            date: dateFns.format(
-                dateFns.addDays(new Date(date), idx),
-                "yyyy-MM-dd"
-            ),
-            value: x,
-          }))
-      ),
+      before,
+      after,
+      predict: dataCalculated,
+    },
+    enterCum: {
+      before: beforeCum,
+      after: cumDays(after.map((x, idx) => ({
+        ...x,
+        value: x.value + (idx === 0 ? _.last(beforeCum).value : 0)
+      }))),
+      predict: cumDays(dataCalculated.map((x, idx) => ({
+        ...x,
+        value: x.value + (idx === 0 ? _.last(beforeCum).value : 0)
+      }))),
     },
   };
 });
@@ -90,7 +110,7 @@ router.get("/predict/leave", async (ctx, next) => {
   const name = ctx.query.name as string;
   const date = dateFns.format(new Date(ctx.query.date as string), 'yyyy-MM-dd')
 
-  const [yandexStats, googleStats, leave] = await Promise.all([
+  const [yandexStats, googleStats, data] = await Promise.all([
     getYandexStats(name).then((stats) => {
       const min = _.minBy(stats, (s) => s.value).value;
       const max = _.maxBy(stats, (s) => s.value).value;
@@ -104,31 +124,41 @@ router.get("/predict/leave", async (ctx, next) => {
     getGoogleStats(name, false).then((stats) =>
       stats.filter((x) => x.date >= "2021-11-01")
     ),
-    getLeaveHistory(),
+    getLeaveHistory()
   ]);
 
-  const before = leave.slice(
+  const before = data.slice(
     0,
-    leave.findIndex((x) => x.date === date)
+    data.findIndex((x) => x.date === date)
   );
-  const after = leave.slice(leave.findIndex((x) => x.date === date));
+  const after = data.slice(data.findIndex((x) => x.date === date));
 
-  console.log(before.length);
-  console.log(after.length);
+  const dataCalculated = await calculateLeave(date, name).then(data => data.map((x, idx) => ({
+    date: dateFns.format(
+        dateFns.addDays(new Date(date), idx),
+        "yyyy-MM-dd"
+    ),
+    value: x,
+  })))
+
+  const beforeCum = cumDays(before);
 
   ctx.body = {
     leave: {
-      before: before,
-      after: after,
-      predict: await calculateLeave(date, name).then((data) =>
-        data.map((x, idx) => ({
-          date: dateFns.format(
-            dateFns.addDays(new Date(date), idx),
-            "yyyy-MM-dd"
-          ),
-          value: x,
-        }))
-      ),
+      before,
+      after,
+      predict: dataCalculated,
+    },
+    leaveCum: {
+      before: beforeCum,
+      after: cumDays(after.map((x, idx) => ({
+        ...x,
+        value: x.value + (idx === 0 ? _.last(beforeCum).value : 0)
+      }))),
+      predict: cumDays(dataCalculated.map((x, idx) => ({
+        ...x,
+        value: x.value + (idx === 0 ? _.last(beforeCum).value : 0)
+      }))),
     },
     stats: {
       google: googleStats,
